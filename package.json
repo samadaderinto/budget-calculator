@@ -1,0 +1,10 @@
+{
+  "name": "budgety",
+  "version": "1.0.0",
+  "description": "budgety project",
+  "main": "app.js",
+  "watch:saa": "live-server",
+  
+  "author": "samad aderinto",
+  "license": "ISC"
+}
