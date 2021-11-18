@@ -150,14 +150,12 @@ var UIController = (function() {
     num = num.toFixed(2);
 
     numSplit = num.split('.');
-    int = numSplit[0];
-
-    if (int > 3) {
-      int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
-    } 
+    int = parseFloat(numSplit[0]);
+    int = int.toLocaleString('en', {maximumFractionDigits: 0})
+  
 
     dec = numSplit[1];
-    return (type === 'exp' ? '-' : '+') + '' + int + '.' + dec;  
+       return `${(type === 'exp' ? '-' : '+')} ${int}.${dec}`  
   };
 
   var nodeListForEach = function(list, callback) {
@@ -246,7 +244,7 @@ var UIController = (function() {
       },
 
       displayMonth: function() {
-        var now, year,month;
+        var now, year,month,months;
          now = new Date();
 
 
@@ -312,7 +310,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     budgetCtrl.calculatePercentages();
     var percentages =  budgetCtrl.getPercentages();
     UICtrl.displayPercentages(percentages);
-    console.log(percentages);
+ 
 
  
    };
@@ -351,7 +349,6 @@ var controller = (function(budgetCtrl, UICtrl) {
  
    return {
      init: function() {
-       console.log("App has started");
       setUpEventListeners();
       UICtrl.displayMonth();
       UICtrl.displayBudget({
